@@ -56,31 +56,27 @@ radio.onReceivedValue(function (name, value) {
     }
     if (yvalue >= 750 && (xvalue > 250 && xvalue < 750)) {
         lastorder = "JoystickAvanza"
-        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, velocity)
         cuteBot.motors(velocity, velocity)
     } else if (lastorder == "JoystickAvanza") {
         cuteBot.stopcar()
     }
     if (xvalue >= 750 && (yvalue > 250 && yvalue < 750)) {
         lastorder = "JoystickDerecha"
-        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, velocity)
-        cuteBot.motors(velocity, 0)
-        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, velocity)
+        cuteBot.motors(velocity, -1 * velocity)
     } else if (lastorder == "JoystickDerecha") {
-        maqueen.motorStop(maqueen.Motors.All)
+        cuteBot.stopcar()
     }
     if (yvalue <= 250 && (xvalue > 250 && xvalue < 750)) {
         lastorder = "JoystickRetrocede"
-        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CCW, velocity)
+        cuteBot.motors(-1 * velocity, -1 * velocity)
     } else if (lastorder == "JoystickRetrocede") {
-        maqueen.motorStop(maqueen.Motors.All)
+        cuteBot.stopcar()
     }
     if (xvalue <= 250 && (yvalue > 250 && yvalue < 750)) {
         lastorder = "JoystickIzquierda"
-        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, velocity)
-        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, velocity)
+        cuteBot.motors(-1 * velocity, velocity)
     } else if (lastorder == "JoystickIzquierda") {
-        maqueen.motorStop(maqueen.Motors.All)
+        cuteBot.stopcar()
     }
 })
 let lastorder = ""
