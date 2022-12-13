@@ -62,7 +62,7 @@ radio.onReceivedValue(function (name, value) {
     }
     if (xvalue >= 750 && (yvalue > 250 && yvalue < 750)) {
         lastorder = "JoystickDerecha"
-        cuteBot.motors(velocity, -1 * velocity)
+        cuteBot.motors(-1 * velocity, velocity)
     } else if (lastorder == "JoystickDerecha") {
         cuteBot.stopcar()
     }
@@ -74,7 +74,7 @@ radio.onReceivedValue(function (name, value) {
     }
     if (xvalue <= 250 && (yvalue > 250 && yvalue < 750)) {
         lastorder = "JoystickIzquierda"
-        cuteBot.motors(-1 * velocity, velocity)
+        cuteBot.motors(velocity, -1 * velocity)
     } else if (lastorder == "JoystickIzquierda") {
         cuteBot.stopcar()
     }
@@ -85,6 +85,6 @@ let yvalue = 0
 let angulo = 0
 let velocity = 0
 radio.setGroup(23)
-velocity = 60
+velocity = 20
 pins.servoWritePin(AnalogPin.P2, 90)
 angulo = 90
