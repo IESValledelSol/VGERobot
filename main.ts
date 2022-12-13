@@ -15,14 +15,25 @@ radio.onReceivedValue(function (name, value) {
             }
         }
     }
-    if (name == "U") {
-        if (value == 0) {
-            pins.digitalWritePin(DigitalPin.P1, 1)
+    if (name == "D") {
+        if (value >= 0) {
+            if (value == 0) {
+                strip.showColor(neopixel.rgb(255, 255, 255))
+            }
+            if (value == 1) {
+                strip.showColor(neopixel.rgb(255, 0, 0))
+            }
+            if (value == 2) {
+                strip.showColor(neopixel.rgb(0, 255, 0))
+            }
+            if (value == 3) {
+                strip.showColor(neopixel.rgb(0, 0, 255))
+            }
         }
     }
-    if (name == "D") {
+    if (name == "E") {
         if (value == 0) {
-            pins.digitalWritePin(DigitalPin.P1, 0)
+            strip.showColor(neopixel.rgb(0, 0, 0))
         }
     }
     if (name == "R") {
@@ -82,9 +93,11 @@ radio.onReceivedValue(function (name, value) {
 let lastorder = ""
 let xvalue = 0
 let yvalue = 0
+let strip: neopixel.Strip = null
 let angulo = 0
 let velocity = 0
 radio.setGroup(23)
 velocity = 20
 pins.servoWritePin(AnalogPin.P2, 90)
 angulo = 90
+strip = neopixel.create(DigitalPin.P1, 8, NeoPixelMode.RGB)
