@@ -36,21 +36,21 @@ radio.onReceivedValue(function (name, value) {
             strip.showColor(neopixel.rgb(0, 0, 0))
         }
     }
-    if (name == "R") {
+    if (name == "F") {
         if (value == 0) {
             angulo = angulo - 1
             if (angulo >= 0) {
-                pins.servoWritePin(AnalogPin.P2, angulo)
+                cuteBot.setServo(cuteBot.ServoList.S1, angulo)
             } else {
                 angulo = 0
             }
         }
     }
-    if (name == "L") {
+    if (name == "C") {
         if (value == 0) {
             angulo = angulo + 1
             if (angulo <= 180) {
-                pins.servoWritePin(AnalogPin.P2, angulo)
+                cuteBot.setServo(cuteBot.ServoList.S1, angulo)
             } else {
                 angulo = 180
             }
@@ -98,6 +98,6 @@ let angulo = 0
 let velocity = 0
 radio.setGroup(23)
 velocity = 20
-pins.servoWritePin(AnalogPin.P2, 90)
 angulo = 90
+cuteBot.setServo(cuteBot.ServoList.S1, 90)
 strip = neopixel.create(DigitalPin.P1, 8, NeoPixelMode.RGB)
