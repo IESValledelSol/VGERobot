@@ -1,39 +1,28 @@
 radio.onReceivedValue(function (name, value) {
-    if (velocity > 0) {
-        if (name == "S") {
-            if (value == 0) {
-                if (velocity + 5 <= 255) {
-                    velocity += 5
-                }
-            }
-        }
-        if (name == "M") {
-            if (value == 0) {
-                if (velocity - 5 >= 0) {
-                    velocity += -5
-                }
-            }
-        }
-    }
     if (name == "D") {
         if (value >= 0) {
             if (value == 0) {
                 strip.showColor(neopixel.rgb(255, 255, 255))
+                cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 255, 255, 255)
             }
             if (value == 1) {
                 strip.showColor(neopixel.rgb(255, 0, 0))
+                cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 255, 0, 0)
             }
             if (value == 2) {
                 strip.showColor(neopixel.rgb(0, 255, 0))
+                cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 0, 255, 0)
             }
             if (value == 3) {
                 strip.showColor(neopixel.rgb(0, 0, 255))
+                cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 0, 0, 255)
             }
         }
     }
     if (name == "E") {
         if (value == 0) {
             strip.showColor(neopixel.rgb(0, 0, 0))
+            cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 0, 0, 0)
         }
     }
     if (name == "F") {
@@ -96,6 +85,7 @@ let yvalue = 0
 let strip: neopixel.Strip = null
 let angulo = 0
 let velocity = 0
+basic.showIcon(IconNames.Yes)
 radio.setGroup(23)
 velocity = 20
 angulo = 90
