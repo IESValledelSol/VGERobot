@@ -27,21 +27,37 @@ radio.onReceivedValue(function (name, value) {
     }
     if (name == "F") {
         if (value == 0) {
-            angulo = angulo - 1
-            if (angulo >= 0) {
-                cuteBot.setServo(cuteBot.ServoList.S1, angulo)
+            cameraangle = cameraangle - 1
+            if (cameraangle >= 0) {
+                cuteBot.setServo(cuteBot.ServoList.S1, cameraangle)
             } else {
-                angulo = 0
+                cameraangle = 0
+            }
+        }
+        if (value == 1) {
+            toolangle = toolangle - 1
+            if (toolangle >= 5) {
+                cuteBot.setServo(cuteBot.ServoList.S2, toolangle)
+            } else {
+                toolangle = 5
             }
         }
     }
     if (name == "C") {
         if (value == 0) {
-            angulo = angulo + 1
-            if (angulo <= 180) {
-                cuteBot.setServo(cuteBot.ServoList.S1, angulo)
+            cameraangle = cameraangle + 1
+            if (cameraangle <= 180) {
+                cuteBot.setServo(cuteBot.ServoList.S1, cameraangle)
             } else {
-                angulo = 180
+                cameraangle = 180
+            }
+        }
+        if (value == 1) {
+            toolangle = toolangle + 1
+            if (toolangle <= 90) {
+                cuteBot.setServo(cuteBot.ServoList.S2, toolangle)
+            } else {
+                toolangle = 90
             }
         }
     }
@@ -83,11 +99,14 @@ let lastorder = ""
 let xvalue = 0
 let yvalue = 0
 let strip: neopixel.Strip = null
-let angulo = 0
+let toolangle = 0
+let cameraangle = 0
 let velocity = 0
 basic.showIcon(IconNames.Yes)
 radio.setGroup(23)
 velocity = 20
-angulo = 90
+cameraangle = 90
+toolangle = 5
 cuteBot.setServo(cuteBot.ServoList.S1, 90)
+cuteBot.setServo(cuteBot.ServoList.S2, 5)
 strip = neopixel.create(DigitalPin.P1, 8, NeoPixelMode.RGB)
