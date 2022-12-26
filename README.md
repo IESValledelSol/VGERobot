@@ -1,5 +1,5 @@
 
-## Edit this project ![Build status badge](https://github.com/tecnoprofesor/cutebotexplorer/workflows/MakeCode/badge.svg)
+## Edit this project
 
 To edit this repository in MakeCode.
 
