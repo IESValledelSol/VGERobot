@@ -1,112 +1,113 @@
 radio.onReceivedValue(function (name, value) {
     if (name == "D") {
         if (value >= 0) {
+            maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOn)
+            maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOn)
             if (value == 0) {
-                strip.showColor(neopixel.rgb(255, 255, 255))
-                cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 255, 255, 255)
+                tiraled.showColor(neopixel.rgb(255, 255, 255))
             }
             if (value == 1) {
-                strip.showColor(neopixel.rgb(255, 0, 0))
-                cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 255, 0, 0)
+                tiraled.showColor(neopixel.rgb(255, 0, 0))
             }
             if (value == 2) {
-                strip.showColor(neopixel.rgb(0, 255, 0))
-                cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 0, 255, 0)
+                tiraled.showColor(neopixel.rgb(0, 255, 0))
             }
             if (value == 3) {
-                strip.showColor(neopixel.rgb(0, 0, 255))
-                cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 0, 0, 255)
+                tiraled.showColor(neopixel.rgb(0, 0, 255))
             }
         }
     }
     if (name == "E") {
         if (value == 0) {
-            strip.showColor(neopixel.rgb(0, 0, 0))
-            cuteBot.singleheadlights(cuteBot.RGBLights.ALL, 0, 0, 0)
+            maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
+            maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOff)
+            tiraled.showColor(neopixel.rgb(0, 0, 0))
         }
     }
     if (name == "F") {
         if (value == 0) {
-            cameraangle = cameraangle - 1
-            if (cameraangle >= 0) {
-                cuteBot.setServo(cuteBot.ServoList.S1, cameraangle)
+            angulocamara = angulocamara - 1
+            if (angulocamara >= 0) {
+                maqueen.servoRun(maqueen.Servos.S1, angulocamara)
             } else {
-                cameraangle = 0
+                angulocamara = 0
             }
         }
         if (value == 1) {
-            toolangle = toolangle - 1
-            if (toolangle >= 5) {
-                cuteBot.setServo(cuteBot.ServoList.S2, toolangle)
+            anguloherramienta = anguloherramienta - 1
+            if (anguloherramienta >= 5) {
+                maqueen.servoRun(maqueen.Servos.S2, anguloherramienta)
             } else {
-                toolangle = 5
+                anguloherramienta = 5
             }
         }
     }
     if (name == "C") {
         if (value == 0) {
-            cameraangle = cameraangle + 1
-            if (cameraangle <= 180) {
-                cuteBot.setServo(cuteBot.ServoList.S1, cameraangle)
+            angulocamara = angulocamara + 1
+            if (angulocamara <= 180) {
+                maqueen.servoRun(maqueen.Servos.S1, angulocamara)
             } else {
-                cameraangle = 180
+                angulocamara = 180
             }
         }
         if (value == 1) {
-            toolangle = toolangle + 1
-            if (toolangle <= 90) {
-                cuteBot.setServo(cuteBot.ServoList.S2, toolangle)
+            anguloherramienta = anguloherramienta + 1
+            if (anguloherramienta <= 90) {
+                maqueen.servoRun(maqueen.Servos.S2, anguloherramienta)
             } else {
-                toolangle = 90
+                anguloherramienta = 90
             }
         }
     }
     if (name == "Y") {
-        yvalue = value
+        yvalor = value
     }
     if (name == "X") {
-        xvalue = value
+        xvalor = value
     }
-    if (value == 1 && lastorder == name) {
-        cuteBot.stopcar()
+    if (value == 1 && ultimaorden == name) {
+        maqueen.motorStop(maqueen.Motors.All)
     }
-    if (yvalue >= 750 && (xvalue > 250 && xvalue < 750)) {
-        lastorder = "JoystickAvanza"
-        cuteBot.motors(velocity, velocity)
-    } else if (lastorder == "JoystickAvanza") {
-        cuteBot.stopcar()
+    if (yvalor >= 750 && (xvalor > 250 && xvalor < 750)) {
+        ultimaorden = "JoystickAvanza"
+        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, velocidad)
+    } else if (ultimaorden == "JoystickAvanza") {
+        maqueen.motorStop(maqueen.Motors.All)
     }
-    if (xvalue >= 750 && (yvalue > 250 && yvalue < 750)) {
-        lastorder = "JoystickDerecha"
-        cuteBot.motors(-1 * velocity, velocity)
-    } else if (lastorder == "JoystickDerecha") {
-        cuteBot.stopcar()
+    if (xvalor >= 750 && (yvalor > 250 && yvalor < 750)) {
+        ultimaorden = "JoystickDerecha"
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, velocidad)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, velocidad)
+    } else if (ultimaorden == "JoystickDerecha") {
+        maqueen.motorStop(maqueen.Motors.All)
     }
-    if (yvalue <= 250 && (xvalue > 250 && xvalue < 750)) {
-        lastorder = "JoystickRetrocede"
-        cuteBot.motors(-1 * velocity, -1 * velocity)
-    } else if (lastorder == "JoystickRetrocede") {
-        cuteBot.stopcar()
+    if (yvalor <= 250 && (xvalor > 250 && xvalor < 750)) {
+        ultimaorden = "JoystickRetrocede"
+        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CCW, velocidad)
+    } else if (ultimaorden == "JoystickRetrocede") {
+        maqueen.motorStop(maqueen.Motors.All)
     }
-    if (xvalue <= 250 && (yvalue > 250 && yvalue < 750)) {
-        lastorder = "JoystickIzquierda"
-        cuteBot.motors(velocity, -1 * velocity)
-    } else if (lastorder == "JoystickIzquierda") {
-        cuteBot.stopcar()
+    if (xvalor <= 250 && (yvalor > 250 && yvalor < 750)) {
+        ultimaorden = "JoystickIzquierda"
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, velocidad)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, velocidad)
+    } else if (ultimaorden == "JoystickIzquierda") {
+        maqueen.motorStop(maqueen.Motors.All)
     }
 })
-let lastorder = ""
-let xvalue = 0
-let yvalue = 0
-let strip: neopixel.Strip = null
-let toolangle = 0
-let cameraangle = 0
-let velocity = 0
+let ultimaorden = ""
+let xvalor = 0
+let yvalor = 0
+let tiraled: neopixel.Strip = null
+let anguloherramienta = 0
+let angulocamara = 0
+let velocidad = 0
 basic.showIcon(IconNames.Yes)
 radio.setGroup(23)
-velocity = 20
-cameraangle = 90
-toolangle = 5
-cuteBot.setServo(cuteBot.ServoList.S1, 90)
-cuteBot.setServo(cuteBot.ServoList.S2, 5)
-strip = neopixel.create(DigitalPin.P1, 8, NeoPixelMode.RGB)
+velocidad = 20
+angulocamara = 90
+anguloherramienta = 5
+maqueen.servoRun(maqueen.Servos.S1, angulocamara)
+maqueen.servoRun(maqueen.Servos.S2, anguloherramienta)
+tiraled = neopixel.create(DigitalPin.P1, 8, NeoPixelMode.RGB)
