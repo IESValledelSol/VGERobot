@@ -102,7 +102,7 @@ basic.showIcon(IconNames.Yes)
 radio.setGroup(23)
 maxanguloherramienta = 40
 minanguloherramienta = 5
-velocidad = 20
+velocidad = 40
 angulocamara = 90
 anguloherramienta = minanguloherramienta
 maqueen.servoRun(maqueen.Servos.S1, angulocamara)
