@@ -7,8 +7,9 @@
 Basado en un robot Maqueen y en la tarjeta Micro:bit, el robot explorador es controlado por un joystick y opcionalmente desde un móvil o unas gafas de realidad virtual usando la cámara que la placa ESP-32 CAM incorpora. Además esta dotado de un servo motor donde se instala una pala excavadora que puede subir y bajar. Todo ello en conjunto, proporciona una experiencia gratificante al alumnado mientras lo construye y al terminar cuando prueban el resultado obtenido
 
 ## Joystick
+La configuración del joystick usado para el robot, puedes encontrarla en el siguiente enlace
 
-
+https://github.com/IESValledelSol/Joystickbit
 
 ## Componentes necesarios
 
