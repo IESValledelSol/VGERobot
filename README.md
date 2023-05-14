@@ -34,6 +34,8 @@ Los diseños 3D de las partes impresas del robot explorador son los siguientes:
 
 https://www.tinkercad.com/things/bwvZ0nkuggx
 
+https://www.tinkercad.com/things/kNVMxMdbnfQ
+
 https://www.tinkercad.com/things/1A37FfX6W1c
 
 ## Bloques
